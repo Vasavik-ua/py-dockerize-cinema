@@ -15,16 +15,24 @@ class Command(BaseCommand):
                 try:
                     db_conn = connections["default"]
                     db_conn.cursor()
-                    self.stdout.write(self.style.SUCCESS("Database available!"))
+                    self.stdout.write(self.style.SUCCESS(
+                        "Database available!"
+                    ))
                     return
                 except OperationalError:
                     retries += 1
-                    self.stdout.write(f"Database unavailable, wait 1 second...")
+                    self.stdout.write(
+                        "Database unavailable, wait 1 second..."
+                    )
                     time.sleep(1)
 
-            self.stdout.write(self.style.ERROR("Database not available after max retries, exiting."))
+            self.stdout.write(self.style.ERROR(
+                "Database not available after max retries, exiting."
+            ))
             sys.exit(1)
 
         except KeyboardInterrupt:
-            self.stdout.write(self.style.ERROR("Interrupted by user, exiting."))
+            self.stdout.write(self.style.ERROR(
+                "Interrupted by user, exiting."
+            ))
             sys.exit(1)
