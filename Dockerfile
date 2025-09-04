@@ -23,3 +23,4 @@ RUN chmod -R 755 /files/media
 RUN chmod -R 755 /files/static
 
 USER my_user
+EXPOSE 8000
